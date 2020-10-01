@@ -1,11 +1,12 @@
 # Visualizacion_por_computador
 Curso 2020/21
+ State: Ongoing.
 
 
   Desafio 1 ✔
   Desafio 2
-  Desafio 3 ✔ (A la espera de ser subido)
+  Desafio 3 ✔ 
   Desafio 4
   Desafio 5
   
-Last updated: 30/09/2020 18:50
+  Last update: 	01/10/2020 12:11
