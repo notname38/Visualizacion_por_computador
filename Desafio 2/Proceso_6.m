@@ -1,38 +1,35 @@
-%% Desafio 2 Proceso 4
+%% Desafio 2 Proceso 6
 % Set de imagenes: 1,3,5,7,9
 % Operaciones realizadas: 
-%   Strel de un tamaño n con un disco.
-%   imerode con el strel. --> Las imagenes parecen "vacias".
-%   Si nos fijamos, tenemos el interior con el erode que les faltan a las 
-%   imagenes.
-%   Asique solo hay que restar.
+%   Strel de un tamaño n con un Diamante.
+%   Imclose con el strel.
 
-%% Inicializaciones:
+%% Inicializaciones.
 close all;
 clc;
 clear;
 addpath("binarizados", "proceso1");
 binario_1 = imread("binarizados/martillo1.jpg");
-procesado_1 = imread("proceso4/martillo1.jpg");
+procesado_1 = imread("proceso6/martillo1.jpg");
 binario_3 = imread("binarizados/martillo3.jpg");
-procesado_3 = imread("proceso4/martillo3.jpg");
+procesado_3 = imread("proceso6/martillo3.jpg");
 binario_5 = imread("binarizados/martillo5.jpg");
-procesado_5 = imread("proceso4/martillo5.jpg");
+procesado_5 = imread("proceso6/martillo5.jpg");
 binario_7 = imread("binarizados/martillo7.jpg");
-procesado_7 = imread("proceso4/martillo7.jpg");
+procesado_7 = imread("proceso6/martillo7.jpg");
 binario_9 = imread("binarizados/martillo9.jpeg");
-procesado_9 = imread("proceso4/martillo9.jpeg");
+procesado_9 = imread("proceso6/martillo9.jpeg");
 
 % Valor de n:
-n = 6; % Rangos en los que hay una n buena = [5,..,10]
+n = 15; % Rangos en los que hay una n buena = [10,..,15]
 
 %% Calculo:
 
-aux1 = binario_1 - imerode(binario_1, strel("disk", n));
-aux3 = binario_3 - imerode(binario_3, strel("disk", n));
-aux5 = binario_5 - imerode(binario_5, strel("disk", n));
-aux7 = binario_7 - imerode(binario_7, strel("disk", n));
-aux9 = binario_9 - imerode(binario_9, strel("disk", n));
+aux1 = imclose(binario_1, strel("diamon", n));
+aux3 = imclose(binario_3, strel("diamon", n));
+aux5 = imclose(binario_5, strel("diamon", n));
+aux7 = imclose(binario_7, strel("diamon", n));
+aux9 = imclose(binario_9, strel("diamon", n));
 
 %% Calculo del error:
 error1 = sum(sum(1-(aux1 == procesado_1))); 
@@ -41,7 +38,7 @@ error5 = sum(sum(1-(aux5 == procesado_5)));
 error7 = sum(sum(1-(aux7 == procesado_7))); 
 error9 = sum(sum(1-(aux9 == procesado_9)));
 
-%% Visualizacion de resultados:
+%% Visualizacion de resultados
 
 figure(1);
 subplot(2,5,1); imshow(aux1); title(error1)
