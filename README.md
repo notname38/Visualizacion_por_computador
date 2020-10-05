@@ -4,9 +4,10 @@ Curso 2020/21
 
 
   Desafio 1 ✔
-  Desafio 2
+  Desafio 2 ✔ ( Excepto el proceso 5 )
   Desafio 3 ✔ 
   Desafio 4
   Desafio 5
-  
-  Last update: 	01/10/2020 12:11
+  Desafio 6
+
+  Last update: 	05/10/2020 16:15
