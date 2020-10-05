@@ -1,0 +1,12 @@
+Cuando exportas del desafio 5, puedes exportar varias cosas, la mascara binaria es nuestra referencia para este desafio, 
+porque luego al hacer el clustering es una imagen binaria
+
+
+esta mascara simboliza los pixeles que queremos y los que no
+
+
+LA MASCARA ES LA REFERENCIA
+
+-> La itereseccion es el producto (de Halman?)
+
+-> 

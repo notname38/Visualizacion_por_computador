@@ -7,20 +7,20 @@
 %% Pistas:
 % Suma de los coeficientes tiene que ser 0 en pasaalta
 % Asegurar que x es un int8
-%% Codigo:
+% definir f como un filtro pasa-alta, hint: es una linea de codigo
+%% Inicializaciones:
 close all;
 x = imread("lena_std.tif");
 x = im2gray(x);
 
 
+%% Filtro:
 
-%f=[-1 -1 -1;-1 8 -1; -1 -1 -1];
-f = imrotate(fspecial('sobel'),90);
-sum(f)
-%%% definir f como un filtro pasa-alta, hint: es una linea de codigo
+% Filtro:
+f = [-1 -1 -1;-1 8 -1; -1 -1 -1] * 3/8; 
+sum(f) % Ayuda a observar si la suma de coeficientes es nula
 
-
-
+%% Visualizacion:
 figure;
 
 subplot(2,5,1)
@@ -51,10 +51,3 @@ imshow(conv2(single(x),f135)+100,gray(256))
 f180=imrotate(f,180,'crop');
 subplot(2,5,10)
 imshow("lena_res_180.png")
-
-%{
-imshow(conv2(single(x),f180)+100,gray(256))
-f215=imrotate(f,215,'crop');
-figure
-imshow(conv2(single(x),f215)+100,gray(256))
-%}
