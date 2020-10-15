@@ -9,6 +9,9 @@ Curso 2020/21
   Desafio 4
   Desafio 5
   Desafio 6
+  Desafio 8
+  Desafio 7
+  Desafio 9
   
 
-  Last update: 	14/10/2020 12:40
+  Last update: 	15/10/2020 13:13
