@@ -11,14 +11,17 @@
 %% Inicializaciones:
 close all;
 x = imread("lena_std.tif");
-x = im2gray(x);
+x = rgb2gray(x);
 
 
 %% Filtro:
 
-% Filtro:
-f = [-1 -1 -1;-1 8 -1; -1 -1 -1] * 3/8; 
-sum(f) % Ayuda a observar si la suma de coeficientes es nula
+% Os ahorro el trabajo, todabia no va una mierda esto
+%f = fspecial('sobel')
+f = [1 1 1; 0 0 0; -1 -1 -1];
+f = transpose(f);
+%f = f ./ max(abs(f(:))) % Normalizamos
+
 
 %% Visualizacion:
 figure;
