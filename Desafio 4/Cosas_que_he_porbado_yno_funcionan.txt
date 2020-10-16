@@ -5,13 +5,18 @@
 % f = [-1 -1 -1; -1 8 -1; -1 -1 -1];
 % f = transpose(f);
 % f = f ./ max(abs(f(:))) % Normalizamos
-% sum(f) % Ayuda a observar si la suma de coeficientes es nula
+% sum(f) % Ayuda a observar si la suma de coeficientes es nuSla
 
 # ESTA FORMA TAMPOCO:
 % Uso de filtros lapacianos:
 % alpha = 0.9;
 %f = fspecial('laplacian',alpha);
 %f = transpose(f);
+
+# MENOS AUN 
+f = fspecial('sobel');
+f = f / max(abs(f(:)))
+f = transpose(f);
 
 
 s o c o r r o
