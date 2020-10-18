@@ -13,7 +13,7 @@ Curso 2020/21
 
   Desafio 5 ✔ 
 
-  Desafio 6
+  Desafio 6 ✔ 
 
   Desafio 8
 
