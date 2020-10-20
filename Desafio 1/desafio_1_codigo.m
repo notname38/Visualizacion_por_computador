@@ -1,40 +1,54 @@
-%-------------------------------------------------------------
-%-------------------------DESAFIO 1---------------------------
-%-------------------------------------------------------------
+close all;
+clc;
+clear;
+addpath("binarizados", "proceso1");
+martillo_1 = imread("martillos/martillo1.jpg");
+martillo_3 = imread("martillos/martillo3.jpg");
+martillo_5 = imread("martillos/martillo5.jpg");
+martillo_7 = imread("martillos/martillo7.jpg");
+martillo_9 = imread("martillos/martillo9.jpeg");
 
-% Reset:
-clear; clc; close all;
 
-%Inicializaciones:
-martillo_10 = imread('martillo10.jpg');
-martillo_11 = imread('martillo11.jpg');
-martillo_12 = imread('martillo12.jpg');
+aux1 = im2bw(martillo_1,0.85); % umbral establecido a mano  75%
+aux3 = im2bw(martillo_3,0.85); % umbral establecido a mano  75%
+aux5 = im2bw(martillo_5,0.85); % umbral establecido a mano  75%
+aux7 = im2bw(martillo_7,0.85); % umbral establecido a mano  75%
+aux9 = im2bw(martillo_9,0.85); % umbral establecido a mano  75%
 
-% Metodo de operaciones directas (x<z):
-martillo_10_binario = rgb2gray(martillo_10);
-martillo_11_binario = rgb2gray(martillo_11);
-martillo_12_binario = rgb2gray(martillo_12);
+figure;
+subplot(2,5,1); imshow(aux1); title("Martillo 1 con umbral del 85%")
+subplot(2,5,2); imshow(aux3); title("Martillo 3 con umbral del 85%") 
+subplot(2,5,3); imshow(aux5); title("Martillo 5 con umbral del 85%")  
+subplot(2,5,4); imshow(aux7); title("Martillo 7 con umbral del 85%")
+subplot(2,5,5); imshow(aux9); title("Martillo 9 con umbral del 85%") 
+subplot(2,5,6); imshow(martillo_1) 
+subplot(2,5,7); imshow(martillo_3) 
+subplot(2,5,8); imshow(martillo_5)  
+subplot(2,5,9); imshow(martillo_7) 
+subplot(2,5,10); imshow(martillo_9) 
 
-umbral = (200-100).*rand(1,1) + 100 %Estamos eligiendo un umbral aleatorio entre 100 y 200.
+aux1 = imbinarize(rgb2gray(martillo_1)); % imagen binaria usando imbinarize
+aux3 = imbinarize(rgb2gray(martillo_3)); % imagen binaria usando imbinarize
+aux5 = imbinarize(rgb2gray(martillo_5)); % imagen binaria usando imbinarize
+aux7 = imbinarize(rgb2gray(martillo_7)); % imagen binaria usando imbinarize
+aux9 = imbinarize(rgb2gray(martillo_9)); % imagen binaria usando imbinarize
 
-figure(1); imshow(martillo_10_binario < umbral)
-figure(2); imshow(martillo_11_binario < umbral)
-figure(3); imshow(martillo_12_binario < umbral)
+figure;
+subplot(2,5,1); imshow(aux1); title("Martillo 1 con imbinarize")
+subplot(2,5,2); imshow(aux3); title("Martillo 3 con imbinarize") 
+subplot(2,5,3); imshow(aux5); title("Martillo 5 con imbinarize")  
+subplot(2,5,4); imshow(aux7); title("Martillo 7 con imbinarize")
+subplot(2,5,5); imshow(aux9); title("Martillo 9 con imbinarize") 
+subplot(2,5,6); imshow(martillo_1) 
+subplot(2,5,7); imshow(martillo_3) 
+subplot(2,5,8); imshow(martillo_5)  
+subplot(2,5,9); imshow(martillo_7) 
+subplot(2,5,10); imshow(martillo_9) 
 
-% Esto demuestra como este metodo varia mucho dependiendo de la
-% imagen y del umbral, dado un umbral aleatorio.
 
-% Con otzu:
 
-martillo_10_umbral = graythresh(martillo_10)
-martillo_11_umbral = graythresh(martillo_11)
-martillo_12_umbral = graythresh(martillo_12)
 
-figure(1); imshow(im2bw(martillo_10, martillo_10_umbral))
-figure(2); imshow(im2bw(martillo_11, martillo_11_umbral))
-figure(3); imshow(im2bw(martillo_12, martillo_12_umbral))
 
-% Si nos fijamos bien, otzu normaliza los umbrales entre [0,1]
 
 
 

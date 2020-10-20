@@ -3,7 +3,7 @@
 % Nota rapida: ( Otra "Herramienta" )
 % Remover la variacion suave de intensidad(?)
 % figure; imshow(x); 
-% xb = imgaussfilt(x,20);
+% xb = imgaussfilt(x,20);     
 % xx=double(x)./double(xb);
 % ¿ que hago yo con esto ? xd 
 % figure; imshow(xx/max(xx(:)))
@@ -12,15 +12,15 @@
 
 %% Inicializaciones:
 close all; clc;
-path_test = 'DRIVE-grupo-ISI-Utrech\test\images';
+%path_test = 'DRIVE-grupo-ISI-Utrech\test\images';
 path_train = 'DRIVE-grupo-ISI-Utrech\training\images';
 path_train_objective = 'DRIVE-grupo-ISI-Utrech\training\1st_manual';
 
-images_test = imageDatastore( path_test );
+%images_test = imageDatastore( path_test );
 images_train = imageDatastore( path_train );
 obj_train = imageDatastore( path_train_objective );
 
-vrz = 20 % Varianza
+%vrz = 5 % Varianza
 
 %% Test:
 while hasdata(images_train)
@@ -28,9 +28,7 @@ while hasdata(images_train)
 	x_obj = read(obj_train);
 	x = rgb2gray(x_og);
 
-	fbe_x = fibermetric(x,vrz);
-	%brd_x = edge(x, 'Canny', 0, vrz);
-	%imshow(x_og + uint8(brd_x*255)); title("Canny:");
+	fbe_x = fibermetric(x,round(maxhessiannorm(x)),'ObjectPolarity','dark');
 
 	figure; 
 	subplot(1,3,1); imshow(x_og + uint8(fbe_x*255)); title("Fibemetric RGB:");

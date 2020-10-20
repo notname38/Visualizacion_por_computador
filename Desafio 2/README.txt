@@ -5,10 +5,8 @@ Procesos Terminados:
 	-> Proceso 2 ✔
 	-> Proceso 3 ✔
 	-> Proceso 4 ✔
-	-> Proceso 5 **
+	-> Proceso 5 ✔
 	-> Proceso 6 ✔
-
-	**Para el proceso 5 no he encontrado todabia un filtro aceptable.
 
 Para ejecutar:
 	Mover los archivos .m de cada proceso a una carpeta junto a las carpetas de los procesos y de los binarizados.

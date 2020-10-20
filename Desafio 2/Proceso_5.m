@@ -1,7 +1,7 @@
 %% Desafio 2 Proceso 5 (No completado)
 % Set de imagenes: 1,3,5,7,9
 % Operaciones realizadas: 
-%   Strel de un tamaño n con una ?.
+%   Strel de un tamaño n con un cubo.
 %   imerode con el strel.
 
 %% Inicializaciones:
@@ -21,15 +21,14 @@ binario_9 = imread("binarizados/martillo9.jpeg");
 procesado_9 = imread("proceso5/martillo9.jpeg");
 
 % Valor de n:
-n = ?; % Rangos en los que hay una n buena = [?,..,?]
-
+n = 15; % 
 %% Calculo:
 
-aux1 = imerode(binario_1, strel("?", n));
-aux3 = imerode(binario_3, strel("?", n));
-aux5 = imerode(binario_5, strel("?", n));
-aux7 = imerode(binario_7, strel("?", n));
-aux9 = imerode(binario_9, strel("?", n));
+aux1 = imopen(binario_1, strel("cube", n));
+aux3 = imopen(binario_3, strel("cube", n));
+aux5 = imopen(binario_5, strel("cube", n));
+aux7 = imopen(binario_7, strel("cube", n));
+aux9 = imopen(binario_9, strel("cube", n));
 
 %% Calculo del error:
 error1 = sum(sum(1-(aux1 == procesado_1))); 
