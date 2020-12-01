@@ -1,40 +1,27 @@
 %% DESAFIO 9
 
-% Nota rapida: ( Otra "Herramienta" )
-% Remover la variacion suave de intensidad(?)
-% figure; imshow(x); 
-% xb = imgaussfilt(x,20);     
-% xx=double(x)./double(xb);
-% ¿ que hago yo con esto ? xd 
-% figure; imshow(xx/max(xx(:)))
-% La imagen esta "homogeneizada" ahora 
+close all; clc; clear all;
+
+inputImage 		= imread('DRIVE-grupo-ISI-Utrech/training/images/26_training.tif');
+objectiveOutput = imread('DRIVE-grupo-ISI-Utrech/training/1st_manual/26_manual1.gif');
+mask 			= imread('DRIVE-grupo-ISI-Utrech/training/mask/26_training_mask.gif');
+
+% Ecualizacion 
+% Tenemos que preparar la imagen para fibermetric.
+% -> con histeq hacemos que los vasos se noten MAS
+% -> con las mascara podemos eliminar el fondo NEGRO
+%    Hacemos esto porque fibermetric puede buscar formas
+%    tubulares OSCURAS en el fondo de la imagen.
+%    Tambien necesita la imagen en grayscale (mas razon para quitar el negro)
+img_Ecu = (histeq(inputImage).*(mask./max(mask))) + (255 - mask);
 
 
-%% Inicializaciones:
-close all; clc;
-%path_test = 'DRIVE-grupo-ISI-Utrech\test\images';
-path_train = 'DRIVE-grupo-ISI-Utrech\training\images';
-path_train_objective = 'DRIVE-grupo-ISI-Utrech\training\1st_manual';
+for ciclo = 10:20
+	img_result = fibermetric(rgb2gray(img_Ecu),ciclo,'ObjectPolarity','dark');
+	img_result_binaria = imbinarize(img_result);
 
-%images_test = imageDatastore( path_test );
-images_train = imageDatastore( path_train );
-obj_train = imageDatastore( path_train_objective );
-
-%vrz = 5 % Varianza
-
-%% Test:
-while hasdata(images_train)
-	x_og = read(images_train);
-	x_obj = read(obj_train);
-	x = rgb2gray(x_og);
-
-	fbe_x = fibermetric(x,round(maxhessiannorm(x)),'ObjectPolarity','dark');
-
-	figure; 
-	subplot(1,3,1); imshow(x_og + uint8(fbe_x*255)); title("Fibemetric RGB:");
-	subplot(1,3,2); imshow(fbe_x); title("Fibemetric MASK:");
-	subplot(1,3,3); imshow(x_obj); title("Objetive MASK:");
+	outputError = sum(sum(abs(imbinarize(objectiveOutput) - img_result_binaria)));
+	figure;
+	subplot(1,2,1), imshow(img_result_binaria), title(sprintf('Grosor: %d',ciclo)); 
+    subplot(1,2,2), imshow(labeloverlay(inputImage,img_result_binaria)), title(sprintf('Error cometido: %d',outputError)); 
 end
-
-
-
